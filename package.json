@@ -1,6 +1,6 @@
 {
   "name": "flow-team-mcp",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "MCP server for Flow Team OpenAPI",
   "main": "dist/index.js",
   "bin": {

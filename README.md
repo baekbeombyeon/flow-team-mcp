@@ -4,6 +4,8 @@ Flow Team OpenAPI를 MCP(Model Context Protocol) 클라이언트에서 사용할
 
 Flow API 문서: <https://api.flow.team/docs>
 
+현재 릴리스: [v0.1.0](CHANGELOG.md)
+
 ## 주요 기능
 
 - Flow OpenAPI 엔드포인트 목록을 검색하고 메타데이터를 확인할 수 있습니다.
