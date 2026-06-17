@@ -48,11 +48,9 @@ npm run build
 
 팀원 모두 같은 버전을 사용하거나 문제 재현이 필요하다면 tag를 사용하는 편이 좋습니다.
 
-현재 사용 가능한 초기 tag:
+현재 사용 가능한 tag는 `git tag --list` 또는 GitHub Releases에서 확인할 수 있습니다. 예시:
 
-```text
-v0.1.0
-```
+    v0.1.0
 
 처음 clone할 때 특정 tag를 사용하려면:
 
