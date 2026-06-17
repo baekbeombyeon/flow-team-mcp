@@ -4,7 +4,7 @@ Flow Team OpenAPI를 MCP(Model Context Protocol) 클라이언트에서 사용할
 
 Flow API 문서: <https://api.flow.team/docs>
 
-## What You Can Do
+## 주요 기능
 
 - Flow OpenAPI 엔드포인트 목록을 검색하고 메타데이터를 확인할 수 있습니다.
 - `FLOW_API_KEY`를 사용해 Flow OpenAPI를 직접 호출할 수 있습니다.
@@ -16,15 +16,17 @@ Flow API 문서: <https://api.flow.team/docs>
   - 프로젝트 생성
   - 프로젝트 참여자 추가
 
-## Requirements
+## 준비 사항
 
 - Node.js 20 이상 권장
 - npm
 - Flow Developer Portal에서 발급한 API Key
 
+Git, Node.js, npm이 아직 설치되어 있지 않다면 [Windows/macOS 설치 가이드](docs/installation.md)를 먼저 확인하세요.
+
 API Key는 서버 실행 환경변수로만 주입하세요. `.env`, 설정 파일, README 예시 등에 실제 키를 커밋하지 마세요.
 
-## Local Setup
+## 로컬 설정
 
 ```bash
 git clone <repository-url>
@@ -43,7 +45,7 @@ FLOW_API_KEY="YOUR_FLOW_API_KEY" npm start
 
 이 서버는 stdio 기반 MCP 서버라서 터미널에서 직접 실행하면 대기 상태로 보이는 것이 정상입니다. 실제 사용은 MCP 클라이언트 설정을 통해 연결합니다.
 
-## MCP Client Configuration
+## MCP 클라이언트 설정
 
 아래 예시는 로컬에 clone한 저장소를 직접 실행하는 방식입니다. `args`의 경로는 본인 PC의 절대 경로로 바꾸세요.
 
@@ -77,7 +79,13 @@ FLOW_API_KEY="YOUR_FLOW_API_KEY" npm start
 }
 ```
 
-### Using npm link
+클라이언트별 자세한 설정 방법:
+
+- [Windows/macOS 설치 가이드](docs/installation.md)
+- [Codex에서 사용하기](docs/codex.md)
+- [Claude Code에서 사용하기](docs/claude-code.md)
+
+### `npm link` 사용하기
 
 전역 명령으로 연결하고 싶다면:
 
@@ -102,28 +110,28 @@ npm link
 }
 ```
 
-## Environment Variables
+## 환경변수
 
-| Name | Required | Default | Description |
+| 이름 | 필수 | 기본값 | 설명 |
 | --- | --- | --- | --- |
-| `FLOW_API_KEY` | Yes | - | Flow OpenAPI 호출에 사용할 API Key입니다. |
-| `FLOW_API_BASE_URL` | No | `https://api.flow.team` | Flow API base URL입니다. 테스트 또는 프록시 환경에서만 변경하세요. |
+| `FLOW_API_KEY` | 예 | - | Flow OpenAPI 호출에 사용할 API Key입니다. |
+| `FLOW_API_BASE_URL` | 아니오 | `https://api.flow.team` | Flow API base URL입니다. 테스트 또는 프록시 환경에서만 변경하세요. |
 
 각 도구 호출에서 `apiKey`, `baseUrl` 입력값을 직접 넘기면 환경변수보다 우선합니다.
 
-## Tools
+## 제공 도구
 
-### Generic Tools
+### 공통 도구
 
-| Tool | Description |
+| 도구 | 설명 |
 | --- | --- |
 | `list_flow_endpoints` | 서버에 등록된 Flow OpenAPI 엔드포인트 목록을 조회합니다. `version`, `group`, `method`, `search`로 필터링할 수 있습니다. |
 | `get_flow_endpoint` | 엔드포인트 ID로 HTTP method, path, docs URL 같은 메타데이터를 조회합니다. |
 | `flow_request` | `endpointId` 또는 직접 지정한 `method` / `path`로 Flow OpenAPI를 호출합니다. |
 
-### Project Tools
+### 프로젝트 도구
 
-| Tool | Description |
+| 도구 | 설명 |
 | --- | --- |
 | `get_project_api_schema` | 프로젝트 API의 request, response, error 문서 정보를 조회합니다. |
 | `list_projects` | Flow 프로젝트 목록을 조회합니다. |
@@ -134,7 +142,7 @@ npm link
 | `create_project` | 새 Flow 프로젝트를 생성합니다. |
 | `add_project_participants` | 프로젝트에 참여자를 추가합니다. |
 
-## Example Prompts
+## 프롬프트 예시
 
 MCP 클라이언트에서 다음처럼 요청할 수 있습니다.
 
@@ -154,7 +162,7 @@ Flow API에서 chats 관련 endpoint 목록 찾아줘.
 Flow endpoint id가 post_v1_bots_botId_notifications인 API 메타데이터 보여줘.
 ```
 
-## Tool Input Examples
+## 도구 입력 예시
 
 ### `list_projects`
 
@@ -222,7 +230,7 @@ Flow endpoint id가 post_v1_bots_botId_notifications인 API 메타데이터 보�
 }
 ```
 
-## Development
+## 개발
 
 ```bash
 npm run typecheck
@@ -244,7 +252,7 @@ src/
     projects.ts         # 프로젝트 전용 MCP tools
 ```
 
-## Troubleshooting
+## 문제 해결
 
 ### `FLOW_API_KEY 환경변수 또는 apiKey 입력값이 필요합니다.`
 
@@ -261,12 +269,12 @@ MCP 클라이언트 설정의 `env.FLOW_API_KEY`에 Flow API Key가 들어있는
 - 설정 변경 후 MCP 클라이언트를 완전히 재시작하세요.
 - 로컬 저장소 위치를 옮겼다면 `args` 경로도 함께 수정하세요.
 
-## Notes
+## 참고 사항
 
 - 현재 서버는 stdio transport를 사용합니다.
 - Flow API 응답은 원본 HTTP 상태, 헤더, body를 포함한 JSON 형태로 반환됩니다.
 - 일부 API는 Flow 계정, 이용기관, 프로젝트 권한에 따라 실패할 수 있습니다.
 
-## License
+## 라이선스
 
 ISC
