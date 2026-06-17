@@ -17,6 +17,66 @@
 
 Node.js를 설치하면 npm도 함께 설치됩니다. 일반 사용자는 Node.js 공식 다운로드 페이지에서 LTS 버전을 설치하는 방식을 권장합니다.
 
+## 사용할 버전 선택하기
+
+`flow-team-mcp`는 Git으로 받아서 사용하는 방식입니다. 사용 목적에 따라 `main` 브랜치 또는 특정 tag를 선택하세요.
+
+### 최신 버전 사용: `main`
+
+최신 문서, 도구, 수정 사항을 바로 사용하고 싶다면 `main` 브랜치를 사용합니다.
+
+```bash
+git clone <repository-url>
+cd flow-team-mcp
+git pull origin main
+npm install
+npm run build
+```
+
+이미 clone한 저장소를 최신 상태로 갱신하려면:
+
+```bash
+cd flow-team-mcp
+git checkout main
+git pull origin main
+npm install
+npm run build
+```
+
+`main`은 최신 변경 사항을 포함하지만, 특정 tag보다 안정성이 낮을 수 있습니다. 팀 내부에서 빠르게 최신 기능을 확인하거나 개발에 참여할 때 적합합니다.
+
+### 안정 버전 사용: tag
+
+팀원 모두 같은 버전을 사용하거나 문제 재현이 필요하다면 tag를 사용하는 편이 좋습니다.
+
+현재 사용 가능한 초기 tag:
+
+```text
+v0.1.0
+```
+
+처음 clone할 때 특정 tag를 사용하려면:
+
+```bash
+git clone <repository-url>
+cd flow-team-mcp
+git checkout v0.1.0
+npm install
+npm run build
+```
+
+이미 clone한 저장소에서 tag로 이동하려면:
+
+```bash
+cd flow-team-mcp
+git fetch --tags
+git checkout v0.1.0
+npm install
+npm run build
+```
+
+tag로 checkout하면 detached HEAD 상태가 됩니다. 단순히 해당 버전을 사용하는 목적이라면 정상입니다. 수정 작업을 하려면 `main`에서 새 브랜치를 만들어 작업하세요.
+
 ## Windows
 
 ### 1. Git 설치
