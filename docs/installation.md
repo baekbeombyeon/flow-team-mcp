@@ -28,7 +28,6 @@ Node.js를 설치하면 npm도 함께 설치됩니다. 일반 사용자는 Node.
 ```bash
 git clone <repository-url>
 cd flow-team-mcp
-git pull origin main
 npm install
 npm run build
 ```
